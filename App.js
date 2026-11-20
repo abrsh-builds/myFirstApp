@@ -1,54 +1,70 @@
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { TextInput } from "react-native-paper";
 export default function App() {
-  const handlePress = () => {
-    console.log("task added successfully");
-  };
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>My Tasks </Text>
-      <View style={styles.horizontal}></View>
-
-      <View style={styles.taskContainer}>
-        <TextInput style={styles.input} placeholder="Add a new task..." />
-        <Button style={styles.button} title="Add" onPress={handlePress} />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.InputContainer}>
+        <TextInput
+          style={styles.Input}
+          mode="outlined"
+          placeholder="what would you like to focus..."
+        />
+        <TouchableOpacity style={styles.fabButton}>
+          <Text style={styles.fabText}>+</Text>
+        </TouchableOpacity>
       </View>
-      <Text>task 1 </Text>
-      <Text>task 2 </Text>
-      <Text>task 3 </Text>
-    </View>
+      <View style={styles.focusedTasks}>
+        <Text style={styles.focusTitle}>Things we've focused on </Text>
+      </View>
+      <View>
+        <Text style={styles.list}>1. Learn JS basics </Text>
+        <Text style={styles.list}>2. Learn react native </Text>
+      </View>
+    </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#1c15a7c6",
+  },
+
+  InputContainer: {
+    padding: 20,
+    flexDirection: "row",
+  },
+  Input: {
+    flex: 1,
+  },
+  fabButton: {
+    height: 60,
+    width: 60,
+    borderRadius: 50,
+    backgroundColor: "transparent",
+    borderWidth: 2,
+    marginLeft: 7,
+    borderColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },
-  title: {
+  fabText: {
     fontSize: 24,
+    color: "#fff",
+  },
+  focusedTasks: {
+    marginTop: 20,
+    padding: 10,
+  },
+  focusTitle: {
     fontWeight: "bold",
+    fontSize: 21,
+    color: "#fff",
+    paddingLeft: 20,
   },
-  horizontal: {
-    marginTop: 20,
-    height: 1,
-    width: "80%",
-    backgroundColor: "#bbadad",
+  list: {
+    paddingLeft: 80,
+    fontSize: 18,
+    color: "#fff",
   },
-  taskContainer: {
-    flexDirection: "row",
-    marginTop: 20,
-    width: "80%",
-    borderWidth: 1,
-    borderColor: "#4e4a4a",
-    borderRadius: 5,
-    marginBottom: 20,
-  },
-
-  input: {
-    flex: 1,
-    width: "80%",
-  },
-  button: {},
 });
